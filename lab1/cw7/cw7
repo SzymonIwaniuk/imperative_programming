@@ -1,0 +1,29 @@
+CC = gcc
+CFLAGS = -std=c2x -pedatnic -Werror=pedatnic -Wall -Wextra
+
+SRC_DIR = src
+BIN_DIR = bin 
+LIB_DIR = lib 
+TEST_DIR = tests 
+
+SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/calculator.c $(SRC_DIR)/power.c 
+OBJS = $(SRCS:.c=.o)
+LIB_OBJS = $(SRC_DIR)/power.c 
+LIBRARY = $(LIB_DIR)/libpower.a 
+TARGET = $(BIN_DIR)/calc 
+TEST_TARGET = $(BIN_DIR)/test_runner 
+
+all: $(TARGET) 
+
+$(LIBRARY): $(LIB_OBJS) 
+	ar rcs $(LIBRARY) $(LIB_OBJS) 
+
+$(TARGET): $(OBSS) $(LIBRARY) 
+       $(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -L$(LIB_DIR) -lutils 
+
+%.o: %.c 
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean: 
+	rm -f $(OBJS) $(LIB_OBJS) $(TARGET) $(TEST_TARGET) $(LIBRARY) 
+
