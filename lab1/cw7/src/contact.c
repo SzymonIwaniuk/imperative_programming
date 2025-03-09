@@ -2,8 +2,8 @@
 #include <string.h>
 #include "contact.h"
 
-void add(Contact contacts[], int *count, const char *name, const char *phone) {
-    if (*count >= 100) { /*assuming a maximum of 100 contact */
+void addc(Contact contacts[], int *count, const char *name, const char *phone) {
+    if (*count >= 100) {
         return;
     }
     strncpy(contacts[*count].name, name, MAXI_NAME);
@@ -12,7 +12,7 @@ void add(Contact contacts[], int *count, const char *name, const char *phone) {
     printf("contact added successfully.\n");
 }
 
-void view(Contact contacts[], int count) {
+void viewc(Contact contacts[], int count) {
     if (count == 0) {
         printf("no contacts found.\n");
         return;
@@ -23,7 +23,7 @@ void view(Contact contacts[], int count) {
     }
 }
 
-int delete(Contact contacts[], int *count, const char *name) {
+int deletec(Contact contacts[], int *count, const char *name) {
     for (int i = 0; i < *count; i++) {
         
 	    if (strcmp(contacts[i].name, name) == 0) {

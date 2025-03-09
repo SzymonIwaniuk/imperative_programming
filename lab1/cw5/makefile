@@ -11,15 +11,13 @@ TEST_DIR = tests
 # Pliki źródłowe i obiektowe
 SRCS = $(wildcard $(SRC_DIR)/*.c)  # Wszystkie pliki .c w src/
 OBJS = $(SRCS:.c=.o)
-LIB_OBJS = $(SRC_DIR)/utils.o
-LIBRARY = $(LIB_DIR)/libutils.a
+LIB_OBJS = $(SRC_DIR)/utils.o $(SRC_DIR)/is_devide.o $(SRC_DIR)/is_greater.o
+LIBRARY = $(LIB_DIR)/libnewutils.a
 TARGET = $(BIN_DIR)/my_program
 TEST_TARGET = $(BIN_DIR)/test_runner  
 
 # Reguła domyślna
 all: $(TARGET)
-
-# Kopiowanie plików .c do bin/
 
 # Kompilacja biblioteki statycznej
 $(LIBRARY): $(LIB_OBJS)
@@ -27,7 +25,7 @@ $(LIBRARY): $(LIB_OBJS)
 
 # Kompilacja głównego programu
 $(TARGET): $(OBJS) $(LIBRARY)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -L$(LIB_DIR) -lutils
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -L$(LIB_DIR) -lnewutils
 
 # Regula kompilacji testow
 $(TEST_TARGET) : $(TEST_DIR)/tests.c $(SRC_DIR)/math_utils.c $(SRC_DIR)/is_greater.c $(SRC_DIR)/is_devide.c

@@ -12,11 +12,11 @@ typedef struct {
 } Contact;
 
 
-void add_contact(Contact contacts[], int *count, const char *name, const char *phone);
+void addc(Contact contacts[], int *count, const char *name, const char *phone);
 
-void view_contacts(Contact contacts[], int count);
+void viewc(Contact contacts[], int count);
 
-int delete_contact(Contact contacts[], int *count, const char *name);
+int deletec(Contact contacts[], int *count, const char *name);
 
 #endif        
 

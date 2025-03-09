@@ -2,9 +2,9 @@ CC = gcc
 CFLAGS = -std=c2x -pedantic -Werror=pedantic -Wall -Wextra
 
 SRC_DIR = src
-BIN_DIR = bin 
+BIN_DIR = bin
 LIB_DIR = lib
-TEST_DIR = tests 
+TEST_DIR = tests
 
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/contact.c 
 OBJS = $(SRCS:.c=.o)
@@ -18,8 +18,14 @@ all: $(TARGET)
 $(LIBRARY): $(LIB_OBJS) 
 	ar rcs $(LIBRARY) $(LIB_OBJS) 
 
-$(TARGET): $(OBJS) $(LIBRARY) 
+$(TARGET): $(OBJS) $(LIBRARY)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -L$(LIB_DIR) -lcontact 
+
+$(TEST_TARGET): $(TEST_DIR)/tests.c $(SRC_DIR)/contact.c
+	$(CC) $(CFLAGS) -o $(TEST_TARGET) $(TEST_DIR)/tests.c $(SRC_DIR)/contact.c 
+
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c $< -o $@
