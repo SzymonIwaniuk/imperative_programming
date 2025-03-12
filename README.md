@@ -1,4 +1,4 @@
-# PI - Imperative Programming in Science and Technology
+# PI - Imperative Programming
 
 ## Repository for PI Course (Code for labs)
 
