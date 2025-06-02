@@ -15,16 +15,16 @@ void print_board(int** board, const int n) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			printf("%d ", board[i][j]);
-        }
+		}
         printf("\n");
-
-    }
+	}
 }
 
 void print_ant(const Ant ant) {
 	char directions[] = {'N', 'E', 'S', 'W'};
-	printf("Position: (%d, %d), Direction: %c\n", ant.pi, ant.pj, directions[ant.direction]);
+	printf("%d, %d, %c\n", ant.pi, ant.pj, directions[ant.direction]);
 }
+
 
 void init_board(int*** board, const int n) {
 	*board = (int**)malloc(n * sizeof(int*));
@@ -35,7 +35,7 @@ void init_board(int*** board, const int n) {
 	}
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			(*board)[i][j] = rnd(1,8);
+			(*board)[i][j] = rnd(1,9);
 		}
 	}	
 }
@@ -95,11 +95,8 @@ void ant_move(int** board, const int n, Ant* ant) {
 }
 
 void ant_simulation(int** board, const int n, Ant* ant, const int steps) {
-	for (int i = 0; i < steps; i++){
+	for (int i = 0; i <= steps; i++){
 		ant_move(board, n, ant);
-		print_board(board, n);
-		print_ant(*ant);
-		printf("\n");
 	}
 
 }	
